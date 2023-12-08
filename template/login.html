@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,
+                         initial-scale=1.0">
+
+    <title>Bank</title> 
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+        body {
+            /* Add background image inline here */
+            /* background: rgba(0, 0, 0, 0.5) url('{% static "images/background.webp" %}') center center no-repeat;*/
+            /*background-image : url('{% static "images/background2.jpg" %}');*/
+            background-size: cover;
+        }
+        .navbar{
+            width : 100%;
+	    height : 550px;
+            margin-top : 0;
+          }
+          .navbar-brand{
+            padding:-20px;
+          }
+          .logo{
+		  margin-top : 60px;
+            length : 200px;
+            width : 200px;
+        }
+        header{
+            margin-top : -50px;
+            height : 120px; 
+            background-color : #003976;
+        }
+        * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+body {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 30px;
+	/* background-color: rgb(231, 231, 231); */
+    /* background-image: url('{% static "images/R.jpg" %}');
+    background-size: cover; */
+}
+
+header {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+.heading {
+	color: green;
+}
+
+.title {
+	font-weight: 400;
+	letter-spacing: 1.5px;
+}
+
+.container {
+	height: 600px;
+	width: 500px;
+	/* background-color: white; */
+	box-shadow: 8px 8px 20px rgb(128, 128, 128);
+	position: relative;
+	overflow: hidden;
+}
+
+.btn {
+	height: 60px;
+	width: 300px;
+	margin: 20px auto;
+	background-image : linear-gradient(to right,
+	rgb(0,57,118),
+	rgb(23,65,122)
+	);
+	/* background-image: linear-gradient(to right,
+			rgb(255, 195, 110),
+			rgb(255, 146, 91)); */
+	box-shadow: 10px 10px 30px rgb(254, 215, 188);
+	border-radius: 50px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.login,
+.signup {
+	font-size: 22px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	position: relative;
+	cursor: pointer;
+}
+
+.slider {
+	height: 60px;
+	width: 150px;
+	border-radius: 50px;
+	background-image : linear-gradient(to right,
+	rgb(0,57,118),
+	rgb(23,65,122)
+	);
+	/* background-image: linear-gradient(to right,
+			rgb(255, 195, 110),
+			rgb(255, 146, 91)); */
+	position: absolute;
+	top: 20px;
+	left: 100px;
+	transition: all 0.5s ease-in-out;
+}
+
+.moveslider {
+	left: 250px;
+}
+
+.form-section {
+	height: 500px;
+	width: 1000px;
+	padding: 20px 0;
+	display: flex;
+	position: relative;
+	transition: all 0.5s ease-in-out;
+	left: 0px;
+}
+
+.form-section-move {
+	left: -500px;
+}
+
+.login-box,
+.signup-box {
+	height: 100%;
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 40px;
+}
+
+.lbl {
+    align-items: center;
+	justify-content: center;
+    color:red;
+}
+
+.login-box {
+	gap: 50px;
+}
+
+.signup-box {
+	gap: 50px;
+}
+
+.ele {
+	height: 60px;
+	width: 400px;
+	outline: none;
+	border: none;
+	color: rgb(77, 77, 77);
+	background-color: rgb(240, 240, 240);
+	border-radius: 50px;
+	padding-left: 30px;
+	font-size: 18px;
+}
+.otp-inputs{
+    margin-left: -120px;
+    display:none;
+}
+
+.otp-box {
+    height:40px;
+    width:100px;
+    border-radius: 8px;
+    outline: none;
+    border:none;
+    color: rgb(77, 77, 77);
+    background-color: rgb(240, 240, 240);
+    font-weight: bold;
+    align-items: center;
+	justify-content: center;
+    padding-left:15px;
+    /* display:none; */
+}
+
+.clkbtn {
+	height: 60px;
+	width: 150px;
+	border-radius: 50px;
+	background-image : linear-gradient(to right,
+	rgb(0,57,118),
+	rgb(23,65,122)
+	);
+	/* background-image: linear-gradient(to right,
+			rgb(255, 195, 110),
+			rgb(255, 146, 91)); */
+	font-size: 22px;
+	border: none;
+	cursor: pointer;
+}
+.logo{
+	height : 200px;
+	width : 200px;
+}
+
+/* For Responsiveness of the page */
+
+@media screen and (max-width: 650px) {
+	.logo{
+		height : 100px;
+		width : 100px;
+	}
+	.container {
+		height: 600px;
+		width: 300px;
+	}
+    .otp-inputs{
+        margin-left: -100px;
+    }
+    .otp-inputs span{
+        font-size: 10px;
+    }
+    .otp-box{
+        height: 25px;
+        width: 25px;
+    }
+
+	.title {
+		font-size: 15px;
+	}
+
+	.btn {
+		height: 50px;
+		width: 200px;
+		margin: 20px auto;
+	}
+
+	.login,
+	.signup {
+		font-size: 19px;
+	}
+
+	.slider {
+		height: 50px;
+		width: 100px;
+		left: 50px;
+	}
+
+	.moveslider {
+		left: 150px;
+	}
+
+	.form-section {
+		height: 500px;
+		width: 600px;
+	}
+
+	.form-section-move {
+		left: -300px;
+	}
+
+	.login-box,
+	.signup-box {
+		height: 100%;
+		width: 300px;
+	}
+
+	.ele {
+		height: 50px;
+		width: 250px;
+		font-size: 15px;
+	}
+
+	.clkbtn {
+		height: 50px;
+		width: 130px;
+		font-size: 19px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.logo{
+		height : 50px;
+		width : 50px;
+	}
+	.container {
+		height: 600px;
+		width: 250px;
+	}
+    .otp-inputs{
+        margin-left: -100px;
+    }
+    .otp-inputs span{
+        font-size: 10px;
+    }
+    .otp-box{
+        height: 25px;
+        width: 25px;
+    }
+
+	.heading {
+		font-size: 30px;
+	}
+
+	.title {
+		font-size: 10px;
+	}
+
+	.btn {
+		height: 50px;
+		width: 200px;
+		margin: 20px auto;
+	}
+
+	.login,
+	.signup {
+		font-size: 19px;
+	}
+
+	.slider {
+		height: 50px;
+		width: 100px;
+		left: 27px;
+	}
+
+	.moveslider {
+		left: 127px;
+	}
+
+	.form-section {
+		height: 500px;
+		width: 500px;
+	}
+
+	.form-section-move {
+		left: -250px;
+	}
+
+	.login-box,
+	.signup-box {
+		height: 100%;
+		width: 250px;
+	}
+
+	.ele {
+		height: 50px;
+		width: 220px;
+		font-size: 15px;
+	}
+
+	.clkbtn {
+		height: 50px;
+		width: 130px;
+		font-size: 19px;
+	}
+}
+          
+    </style>
+</head>
+ 
+<body>
+    
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    
+    <header>
+        <img class = "logo" src="{% static 'images/logo.webp' %}" alt="Bank Logo">
+    </header>
+
+    
+    <!-- container div -->
+    <div class="container">
+        <!-- upper button section to select
+             the login or signup form -->
+        <!--<div class="slider"></div>-->
+        <div class="btn">
+            <!--<button class="login">Login</button>-->
+            <button class="signup">Signup</button>
+        </div>
+ 
+        <!-- Form section that contains the
+             login and the signup form -->
+        <div class="form-section">
+ 
+            <!-- login form -->
+            <!--<div class="login-box">
+                <div>
+                    <span class ="lbl" >*</span>
+                    <input type="tel"
+                        class="email ele"
+                        placeholder="Enter 10 digit mobile number">
+                </div>
+                <div>
+                    <span class ="lbl" >*</span>
+                    <input type="password"
+                        class="password ele"
+                        placeholder="password">
+                </div>
+                <button class="clkbtn">Login</button>
+            </div>-->
+ 
+            <!-- signup form -->
+            <div class="signup-box">
+                <div>
+                    <span class ="lbl" >*</span>
+                    <input type="text"
+                        class="name ele"
+                        id = "fname"
+                        placeholder="Enter your first name">
+                </div>
+                <div>
+                    <span class ="lbl" >*</span>
+                    <input type="text"
+                        class="name ele"
+                        id = "lname"
+                        placeholder="Enter your last name">
+                </div>
+                <div>
+                    <span class ="lbl" >*</span>
+                    <input type="tel"
+                        class="email ele"
+                        id = "phn_no"
+                        placeholder="Enter 10 digit mobile number">
+                </div>
+                <div class="otp-inputs">
+                    <span >Enter 6 digit otp</span>
+                    <input id="otp1" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" class="otp-box">
+                    <!--<input id="otp2" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-box">
+                    <input id="otp3" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-box">
+                    <input id="otp4" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-box">-->
+                </div>
+                <button id="upbtn" class="clkbtn" onclick="verify_register()">Verify</button>
+                <span style="color:red;margin-top:-30px;" id="error_feild"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+	    let signup = document.querySelector(".signup");
+let login = document.querySelector(".login");
+let slider = document.querySelector(".slider");
+let formSection = document.querySelector(".form-section");
+var first = true;
+const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+// let sendOtpButton = document.querySelector(".clkbtn");
+// const upbtn = document.querySelector("#upbtn");
+// upbtn.addEventListener("click", verify_register);
+// let otpInputs = document.querySelectorAll(".otp-inputs");
+
+
+async function verify_register() {
+
+    const sendOtpButton = document.querySelector("#upbtn");
+    const otpInputs = document.querySelector(".otp-inputs");
+    const phoneNumberInput = document.getElementById("phn_no");
+    const errorfeild = document.getElementById("error_feild");
+    const fnameInput = document.getElementById("fname").value;
+    const lnameInput = document.getElementById("lname").value;
+    const otp1Input = document.getElementById("otp1").value;
+    // const otp2Input = document.getElementById("otp2").value;
+    // const otp3Input = document.getElementById("otp3").value;
+    // const otp4Input = document.getElementById("otp4").value;
+    const phone_number = phoneNumberInput.value.trim();
+    if(fnameInput === ""){
+        errorfeild.textContent = "Enter Your First Name";
+        return ;
+    }
+    if(lnameInput === ""){
+        lnameInput = "";
+    }
+    if (/^\d{10}$/.test(phone_number)) {
+        // Do something with the valid phone number
+    } else {
+        errorfeild.textContent = "Enter valid 10 digit mobile number";
+        phoneNumberInput.focus();
+        return;
+    }
+    // if(phone_number === ""){
+    //     errorfeild.textContent = "Enter Mobile Number";
+    //     return ;
+    // }
+    // alert(phone_number.length);
+    // if(phone_number.length > 10 || phone_number.length < 10){
+    //     errorfeild.textContent = "Enter valid 10 digi mobile number";
+    //     return;
+    // }
+    // alert(phone_number)
+
+    // Make API call to send OTP and handle response
+    if(first){
+        try {
+            const response = await fetch("http://127.0.0.1:8000/send_otp/", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken 
+                    },
+                    body: JSON.stringify({
+                        phone_number: phone_number,
+                        // Add other data you want to send
+                    }),
+                // ... Add required headers and data for sending OTP
+            });
+
+            if (response.status === 200) {
+                errorfeild.textContent = "Otp send Successfullly";
+                sendOtpButton.textContent = "Register"; // Change button text
+                otpInputs.style.display = "inline-block";
+                first = false;
+            } else {
+                // Handle error case
+                errorfeild.textContent = "Failed to send otp";
+                console.log("Failed to send OTP");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    else{
+        if(otp1Input === ""){
+            errorfeild.textContent = "Enter correct otp";
+            return ;
+        }
+        try {
+            // alert("enter successfully");
+            console.log(phone_number);
+            console.log(otp1Input);
+            console.log(fnameInput);
+            console.log(lnameInput);
+            await fetch("http://127.0.0.1:8000/verify/", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Include any additional headers as needed
+                },
+                body: JSON.stringify({
+                    phone_number : phone_number,
+                    otp : otp1Input,
+                    first_name : fnameInput,
+                    last_name : lnameInput,
+                }),
+            })
+            .then(response => {
+                if(response.ok){
+                    return response.json();
+                }
+                else{
+                    console.error('Error:',response.statusText);
+                }
+            })
+            .then(data =>{
+                console.log(data.id);
+                fetch("http://127.0.0.1:8000/user/" + data.id,{
+                    method : 'GET',
+                })
+                .then(response =>{
+                    if(response.ok){
+                        window.location.href = response.url;
+                    }
+                    else{
+                        console.error(response.statusText);
+                    }
+                })
+                .catch(error =>{
+                    console.error(error);
+                })
+            })
+            .catch(error =>{
+                console.error('error:',error);
+            });
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+
+    }
+};
+
+    </script>
+
+</body>
+</html>
